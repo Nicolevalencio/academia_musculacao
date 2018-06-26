@@ -1,0 +1,29 @@
+
+package br.com.infox.dal;
+import java.sql.*;
+
+
+public class ModuloConexao {
+    //metodo responsavel por estabelecer a conexão com o banco
+    public static Connection conector(){
+        java.sql.Connection conexao = null;
+        // a linha abaixo chama o drive
+        String driver = "com.mysql.cj.jdbc.Driver";
+        //armazenando informacoes referente ao banco
+        String url="jdbc:mysql://localhost:3306/bdinfox?useTimezone=true&serverTimezone=UTC";
+        String user="root";
+        String password="";
+        
+// estabelecendo a conexão com o banco
+        try {
+            Class.forName(driver);
+            //vai estabelecer a conexao usando os parametros abaixo
+            conexao = DriverManager.getConnection(url,user,password );
+            return conexao;
+        } catch (Exception e) {
+            //a linha abaixo serve de apoio p esclarecer o erro
+            System.out.println(e.getMessage());
+            return null;
+        }
+    }  
+}
